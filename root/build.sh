@@ -10,13 +10,15 @@ export LDFLAGS="-L${PREFIX}/lib"
 ARCH="$(uname 2>/dev/null)"
 
 LinuxInstallation() {
-    # Build dependencies:
+    # Build dependencies (fedora/RHEL):
     # - libXpm-devel
     # - libX11-devel
 
     chmod +x configure;
 
     make distclean;
+
+    (cd graf2d/asimage/src/libAfterImage; autoheader)
 
     ./configure \
         ${ARCH,,*}x8664gcc \
@@ -30,20 +32,15 @@ LinuxInstallation() {
         --enable-soversion \
         --enable-sqlite \
         --enable-ssl \
+        --disable-xml \
+        --etcdir=${PREFIX}/etc/root \
+        --libdir=${PREFIX}/lib \
         --prefix=${PREFIX} || return 1;
-        #--with-qt-incdir=${PREFIX}/include/ \
-        #--with-qt-libdir=${PREFIX}/lib/ \
-        #--with-ssl-incdir=${PREFIX}/include/openssl/ \
-        #--with-ssl-libdir=${PREFIX}/lib/ \
-        #--with-ssl-shared=yes \
-        #--with-sqlite-incdir=${PREFIX}/include/  \
-        #--with-sqlite-libdir=${PREFIX}/lib/  \
-        #--with-python-incdir=${PREFIX}/include/python${PY_VER}/ \
-        #--with-python-libdir=${PREFIX}/lib/ \
-        #--with-x11-libdir=${PREFIX}/lib/ \
 
     make || return 1;
     make install || return 1;
+
+    mv ${PREFIX}/lib/{ROOT.py,libPyROOT.so} ${PREFIX}/lib/python${PY_VER}/site-packages
 
     return 0;
 }
