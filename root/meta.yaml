@@ -1,35 +1,63 @@
-
 package:
-    name: root
-    version: 5.34.14
+  name: root
+  version: !!str 5.34.18
 
 source:
-    git_url: https://github.com/root-mirror/root
-    git_tag: v5-34-14
-
-build:
-    number: 0
+  fn: root_v5.34.18.source.tar.gz
+  url: ftp://root.cern.ch/root/root_v5.34.18.source.tar.gz
+  md5: 2a9ef6a342833cb461020fa0832e78fe
 
 requirements:
-    build:
-        - python
-        - openssl
-        - qt
-        - sqlite
+  build:
+    - python
+    - gsl
 
-    run:
-        - python
-        - openssl
-        - qt
-        - sqlite
+  run:
+    - python
+    - gsl
+
+build:
+  number: 0
+
+  has_prefix_files:
+    - lib/cint/cint/lib/G__c_ipc.d
+    - lib/cint/cint/lib/G__c_posix.d
+    - lib/cint/cint/lib/G__c_stdfunc.d
+
+  binary_has_prefix_files:
+    - lib/libASImage.so
+    - lib/libCint.so
+    - lib/libCore.so
+    - lib/libEG.so
+    - lib/libGeom.so
+    - lib/libGpad.so
+    - lib/libGraf.so
+    - lib/libGui.so
+    - lib/libHtml.so
+    - lib/libNet.so
+    - lib/libProofBench.so
+    - lib/libProof.so
+    - lib/libRint.so
+    - lib/libRIO.so
+    - lib/libRootAuth.so
+    - lib/libTreeViewer.so
 
 test:
-    imports:
-        - ROOT
+  # Python imports
+  imports:
+    - ROOT
 
-    commands:
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - root-config --version
 
 about:
-    home: http://root.cern.ch/
-    license: LGPL v2.1
+  home: http://root.cern.ch
+  license: LGPLv2
+  summary: "Analysis package for particle physics"
 
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
