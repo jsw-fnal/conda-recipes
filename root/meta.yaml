@@ -37,6 +37,7 @@ build:
     - lib/libNet.so
     - lib/libProofBench.so
     - lib/libProof.so
+    - lib/libRGL.so
     - lib/libRint.so
     - lib/libRIO.so
     - lib/libRootAuth.so

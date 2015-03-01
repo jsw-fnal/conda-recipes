@@ -26,13 +26,16 @@ LinuxInstallation() {
         --enable-qt \
         --enable-x11 \
         --enable-minuit2 \
+		--enable-roofit \
         --enable-python \
+		--enable-mathmore \
         --enable-rpath \
         --enable-shared \
         --enable-soversion \
         --enable-sqlite \
         --enable-ssl \
         --disable-xml \
+		--diable-xrootd \
         --etcdir=${PREFIX}/etc/root \
         --libdir=${PREFIX}/lib \
         --prefix=${PREFIX} || return 1;
