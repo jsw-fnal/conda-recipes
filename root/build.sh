@@ -24,25 +24,13 @@ LinuxInstallation() {
     (cd graf2d/asimage/src/libAfterImage; autoheader)
 
     ./configure \
-        ${ARCH,,*}x8664gcc \
-        --minimal \
-        --enable-qt \
-        --enable-x11 \
-        --enable-minuit2 \
-		--enable-roofit \
-        --enable-python \
-		--enable-mathmore \
-        --enable-rpath \
-        --enable-shared \
-        --enable-soversion \
-        --enable-sqlite \
-        --enable-ssl \
-        --disable-xml \
         --etcdir=${PREFIX}/etc/root \
         --libdir=${PREFIX}/lib \
-        --prefix=${PREFIX} || return 1;
+        --prefix=${PREFIX} \
+		--all \
+		|| return 1;
 
-    make || return 1;
+    make -j8 || return 1;
     make install || return 1;
 
     mv ${PREFIX}/lib/{ROOT.py,libPyROOT.so} ${PREFIX}/lib/python${PY_VER}/site-packages

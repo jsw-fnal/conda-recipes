@@ -18,29 +18,7 @@ requirements:
 build:
   number: 0
 
-  has_prefix_files:
-    - lib/cint/cint/lib/G__c_ipc.d
-    - lib/cint/cint/lib/G__c_posix.d
-    - lib/cint/cint/lib/G__c_stdfunc.d
-
-  binary_has_prefix_files:
-    - lib/libASImage.so
-    - lib/libCint.so
-    - lib/libCore.so
-    - lib/libEG.so
-    - lib/libGeom.so
-    - lib/libGpad.so
-    - lib/libGraf.so
-    - lib/libGui.so
-    - lib/libHtml.so
-    - lib/libNet.so
-    - lib/libProofBench.so
-    - lib/libProof.so
-    - lib/libRGL.so
-    - lib/libRint.so
-    - lib/libRIO.so
-    - lib/libRootAuth.so
-    - lib/libTreeViewer.so
+  detect_binary_files_with_prefix: true
 
 test:
   # Python imports
