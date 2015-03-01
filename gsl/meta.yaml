@@ -8,7 +8,7 @@ source:
 
 requirements:
   build:
-    - gcc
+    - chrpath
 
 about:
   home: http://www.gnu.org/software/gsl/

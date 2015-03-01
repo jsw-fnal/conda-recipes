@@ -1,5 +1,8 @@
 #!/bin/bash
 
+pwd
+ls
+
 mkdir -vp ${PREFIX}/bin;
 
 export CFLAGS="-Wall -g -m64 -pipe -O2 -march=x86-64 -fPIC"
@@ -35,7 +38,6 @@ LinuxInstallation() {
         --enable-sqlite \
         --enable-ssl \
         --disable-xml \
-		--diable-xrootd \
         --etcdir=${PREFIX}/etc/root \
         --libdir=${PREFIX}/lib \
         --prefix=${PREFIX} || return 1;
